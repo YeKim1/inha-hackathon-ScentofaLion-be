@@ -7,7 +7,7 @@ class UserManager(BaseUserManager):
     def create_user(self, email, nickname, password):
         user = self.model(
             email = email,
-            nickname = nickname,
+            nickname = nickname
         )
         user.set_password(password)
         user.save(using=self.db)
@@ -29,6 +29,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(unique=True)
     nickname = models.CharField(max_length=100)
+    sbti = models.CharField(max_length=6, null=True) # color
+    price = models.IntegerField(null=True)
+    #sub_set_name = models.ForeignKey()
+    sub_date = models.DateField(null=True)
+
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
