@@ -16,7 +16,7 @@ class login(APIView):
         # 유저 정보 확인
         if user is not None:
             auth.login(request, user)
-            return Response({"message": "Success Login"}, status=200)
+            return Response({"id": user.id}, status=200)
         
         # 가입하지 않은 유저인 경우
         else:
