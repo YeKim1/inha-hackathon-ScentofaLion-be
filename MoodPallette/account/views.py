@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 from django.contrib.auth import login, authenticate
 from .models import UserManager, User
+from .serializers import accountSerializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
@@ -47,4 +48,16 @@ class signup(APIView):
         # 불일치
         elif request.data["password1"] != request.data["password2"]:
             return Response({"message": "password가 일치하지 않음!!"}, status=400)
-    
+
+class info(APIView):
+    def get(self, request, userId):
+        user = User.objects.get(id=userId)
+        serializer = accountSerializers(user)
+        return Response(serializer.data, status=200)
+        
+class update(APIView):
+    def patch(self, request, userId):
+        user = get_object_or_404(User, id=userId)
+        user.user_color = request.data["user_color"]
+        user.save()
+        return Response(user.user_color)

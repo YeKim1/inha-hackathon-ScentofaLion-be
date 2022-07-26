@@ -39,9 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'account',
-    'sbti',
     'product',
+<<<<<<< refs/remotes/origin/main
     'payment',
+=======
+    'subSelect',
+    'subSet',
+>>>>>>> feat: add account
 ]
 
 MIDDLEWARE = [

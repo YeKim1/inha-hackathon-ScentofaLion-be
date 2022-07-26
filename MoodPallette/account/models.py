@@ -1,5 +1,7 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
+from subSelect.models import subSelect
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -28,12 +30,11 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(unique=True)
-    nickname = models.CharField(max_length=100)
-    sbti = models.CharField(max_length=6, null=True) # color
     price = models.IntegerField(null=True)
-    #sub_set_name = models.ForeignKey()
     sub_date = models.DateField(null=True)
-
+    nickname = models.CharField(max_length=100)
+    subSelect_id = models.ForeignKey(subSelect, on_delete=models.PROTECT, db_column="subSelect_id", null=True)
+    user_color = models.CharField(max_length=6, default="")
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
