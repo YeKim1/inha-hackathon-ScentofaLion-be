@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'account',
     'sbti',
     'product',
+    'payment',
 ]
 
 MIDDLEWARE = [
