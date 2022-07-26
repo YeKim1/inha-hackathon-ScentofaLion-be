@@ -74,7 +74,7 @@ class subSet_API(APIView):
 
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=200)
+        return Response(serializer.data)
 
 class subSelect_API(APIView):
     def get(self, request, userId):
