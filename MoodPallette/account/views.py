@@ -22,7 +22,7 @@ class login(APIView):
         # 가입하지 않은 유저인 경우
         else:
             return Response({"message": "유저 정보가 없음"}, status=404)
-
+    
 # 로그아웃 이게 맞나??????
 def logout(request):
     auth.logout(request)
@@ -49,15 +49,15 @@ class signup(APIView):
         elif request.data["password1"] != request.data["password2"]:
             return Response({"message": "password가 일치하지 않음!!"}, status=400)
 
-class info(APIView):
+class account_API(APIView):
     def get(self, request, userId):
         user = User.objects.get(id=userId)
         serializer = accountSerializers(user)
         return Response(serializer.data, status=200)
-        
-class update(APIView):
+
     def patch(self, request, userId):
         user = get_object_or_404(User, id=userId)
         user.user_color = request.data["user_color"]
         user.save()
         return Response(user.user_color)
+    
