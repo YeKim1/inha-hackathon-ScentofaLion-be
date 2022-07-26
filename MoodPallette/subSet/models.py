@@ -1,8 +1,10 @@
 from django.db import models
+from subSelect.models import subSelect
 
 # Create your models here.
 class subSet(models.Model):
     color = models.CharField(max_length=6, default="")
+    subSelect_id = models.ForeignKey(subSelect, on_delete=models.PROTECT, db_column="subSelect_id", null=True)
     diffuser_name = models.CharField(max_length=100, default="")
     handwash_name = models.CharField(max_length=100, default="")
     handcream_name = models.CharField(max_length=100, default="")
