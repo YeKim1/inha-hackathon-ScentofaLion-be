@@ -40,12 +40,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'account',
     'product',
-<<<<<<< refs/remotes/origin/main
     'payment',
-=======
     'subSelect',
     'subSet',
->>>>>>> feat: add account
 ]
 
 MIDDLEWARE = [
