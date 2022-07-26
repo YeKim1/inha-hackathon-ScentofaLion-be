@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'account',
     'product',
     'payment',
-    'subSelect',
-    'subSet',
+    'sub',
 ]
 
 MIDDLEWARE = [
