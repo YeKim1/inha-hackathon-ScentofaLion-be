@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from .models import product
-from .serializers import ProductSerializer
+from .models import product, color
+from .serializers import ProductSerializer, ColorSerializer
 from account.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -56,3 +56,9 @@ class getuser(APIView):
         user_product = product.objects.filter(product_color=user.user_color)
         serializer = ProductSerializer(user_product, many=True)
         return Response(serializer.data, status=200)
+
+class getColor(APIView):
+    def get(self, request):
+        c = color.objects.all()
+        serializer = ColorSerializer(c, many=True)
+        return Response(serializer.data)

@@ -9,7 +9,6 @@ from rest_framework.response import Response
 class getpay(APIView):
     def get(self, request, userId):
         user = User.objects.get(id=userId)
-        print(user.price)
         user_price = payment.objects.filter(pay_price=user.price)
         serializer = PaymentSerializer(user_price, many=True)
         return Response(serializer.data, status=200)
