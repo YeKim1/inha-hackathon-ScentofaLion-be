@@ -53,7 +53,6 @@ class purple(APIView):
 class getuser(APIView):
     def get(self, request, userId):
         user = User.objects.get(id=userId)
-        print(user.sbti)
-        user_product = product.objects.filter(product_color=user.sbti)
+        user_product = product.objects.filter(product_color=user.user_color)
         serializer = ProductSerializer(user_product, many=True)
         return Response(serializer.data, status=200)
