@@ -13,4 +13,5 @@ urlpatterns = [
     path('white/', csrf_exempt(views.white.as_view())),
     path('purple/', csrf_exempt(views.purple.as_view())),
     path('<int:userId>/', csrf_exempt(views.getuser.as_view())),
+    path('getColor/', csrf_exempt(views.getColor.as_view())),
 ]
