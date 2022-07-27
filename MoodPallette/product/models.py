@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class product(models.Model):
-    product_name = models.CharField(max_length=100, default="")
+    product_name = models.CharField(max_length=100, default="", unique=True, primary_key=True)
     product_color = models.CharField(max_length=100, default="")
     product_type = models.CharField(max_length=100, default="")
     product_img = models.ImageField(upload_to = 'product/')

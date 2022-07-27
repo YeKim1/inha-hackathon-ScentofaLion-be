@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from .models import subSet, subSelect
-from .serializers import subSetSerializer, NameSerializer, subSelectSerializer
+from pyparsing import str_type
+from .models import subSet
+from .serializers import subSetSerializer, NameSerializer, TFSerializer
 from account.models import User
+from product.models import product
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
@@ -9,76 +11,65 @@ from rest_framework.exceptions import ValidationError
 class subSet_API(APIView):
     def post(self, request, userId):
         set = subSet()
-        Select = subSelect()
         user = User.objects.get(id=userId)
-
-        set.diffuser_name = request.data['diffuser_name']
-        if request.data['diffuser_name'] != "":
-            Select.diffuser_yn = True
-        set.handwash_name = request.data['handwash_name']
-        if request.data['handwash_name'] != "":
-            Select.handwash_yn = True
-        set.handcream_name = request.data['handcream_name']
-        if request.data['handcream_name'] != "":
-            Select.handcream_yn = True
-        set.sofrner_name = request.data['sofrner_name']
-        if request.data['sofrner_name'] != "":
-            Select.sofrner_yn = True
-        set.perfume_name = request.data['perfume_name']
-        if request.data['perfume_name'] != "":
-            Select.perfume_yn = True
-        set.shampoo_name = request.data['shampoo_name']
-        if request.data['shampoo_name'] != "":
-            Select.shampoo_yn = True
-        set.rinse_name = request.data['rinse_name']
-        if request.data['rinse_name'] != "":
-            Select.rinse_yn = True
-        set.bodywash_name = request.data['bodywash_name']
-        if request.data['bodywash_name'] != "":
-            Select.bodywash_yn = True
-        set.candle_name = request.data['candle_name']
-        if request.data['candle_name'] != "":
-            Select.candle_yn = True
-        set.room_name = request.data['room_name']
-        if request.data['room_name'] != "":
-            Select.room_yn = True
-        set.bodymist_name = request.data['bodymist_name']
-        if request.data['bodymist_name'] != "":
-            Select.bodymist_yn = True
-        set.bodylotion_name = request.data['bodylotion_name']
-        if request.data['bodylotion_name'] != "":
-            Select.bodylotion_yn = True
-
-        Select.save()
-
-        user.subSelect_id = Select.id
-        set.subSelect_id = Select.id
+        for k, v in request.data.items():
+            p = product.objects.get(pk=v)
+            if k == "diffuser":
+                set.diffuser = p
+                set.count += 1
+            elif k == "handwash":
+                set.handwash = p
+                set.count += 1
+            elif k == "handcream":
+                set.handcream = p
+                set.count += 1
+            elif k == "sofrner":
+                set.sofrner = p
+                set.count += 1
+            elif k == "perfume":
+                set.perfume = p
+                set.count += 1
+            elif k == "shampoo":
+                set.shampoo = p
+                set.count += 1
+            elif k == "rinse":
+                set.rinse = p
+                set.count += 1
+            elif k == "bodywash":
+                set.bodywash = p
+                set.count += 1
+            elif k == "candle":
+                set.candle = p
+                set.count += 1
+            elif k == "room":
+                set.room = p
+                set.count += 1
+            elif k == "bodymist":
+                set.bodymist = p
+                set.count += 1
+            elif k == "bodylotion":
+                set.bodylotion = p
+                set.count += 1
+                
         set.color = user.user_color
-
         set.save()
+        user.subSet = set
         user.save()
-
         return Response(status=200)
 
     def get(self, request, userId):
         user = User.objects.get(id=userId)
-        set = subSet.objects.get(subSelect_id = user.subSelect_id)
+        user_set = user.subSet
+        set = subSet.objects.get(id=user_set.id)
         serializer = subSetSerializer(set)
 
         return Response(serializer.data, status=200)
 
-    def put(self, request, userId):
-        user = User.objects.get(id=userId)
-        set = subSet.objects.get(subSelect_id = user.subSelect_id)
-        serializer = NameSerializer(set, data=request.data)
-
-        if serializer.is_valid():
-            serializer.save()
-        return Response(serializer.data)
-
-class subSelect_API(APIView):
+class subSet_TF(APIView):
     def get(self, request, userId):
         user = User.objects.get(id=userId)
-        select = subSelect.objects.get(id = user.subSelect_id)
-        serializer = subSelectSerializer(select, many=True)
-        return Response(serializer, status=200)
+        user_set = user.subSet
+        set = subSet.objects.get(id=user_set.id)
+        serializer = TFSerializer(set)
+
+        return Response(serializer.data, status=200)

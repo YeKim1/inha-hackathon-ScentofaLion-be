@@ -1,33 +1,20 @@
+from tkinter import CASCADE
 from django.db import models
-
-class subSelect(models.Model):
-    diffuser_yn = models.BooleanField(default=False)
-    handwash_yn = models.BooleanField(default=False)
-    handcream_yn = models.BooleanField(default=False)
-    sofrner_yn = models.BooleanField(default=False)
-    perfume_yn = models.BooleanField(default=False)
-    shampoo_yn = models.BooleanField(default=False)
-    rinse_yn = models.BooleanField(default=False)
-    bodywash_yn = models.BooleanField(default=False)
-    candle_yn = models.BooleanField(default=False)
-    room_yn = models.BooleanField(default=False)
-    diffuser_yn = models.BooleanField(default=False)
-    diffuser_yn = models.BooleanField(default=False)
-
+from product.models import product
 
 class subSet(models.Model):
     color = models.CharField(max_length=6, default="")
-    subSelect_id = models.IntegerField()
-    diffuser_name = models.CharField(max_length=100, default="")
-    handwash_name = models.CharField(max_length=100, default="")
-    handcream_name = models.CharField(max_length=100, default="")
-    sofrner_name = models.CharField(max_length=100, default="")
-    perfume_name = models.CharField(max_length=100, default="")
-    shampoo_name = models.CharField(max_length=100, default="")
-    rinse_name = models.CharField(max_length=100, default="")
-    bodywash_name = models.CharField(max_length=100, default="")
-    candle_name = models.CharField(max_length=100, default="")
-    room_name = models.CharField(max_length=100, default="")
-    bodymist_name = models.CharField(max_length=100, default="")
-    bodylotion_name = models.CharField(max_length=100, default="")
+    count = models.IntegerField(default=0)
+    diffuser = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="diffuser")
+    handwash = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="handwash")
+    handcream = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="handcream")
+    sofrner = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="sofrner")
+    perfume = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="perfume")
+    shampoo = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="shampoo")
+    rinse = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="rinse")
+    bodywash = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="bodywash")
+    candle = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="candle")
+    room = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="room")
+    bodymist = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="bodymist")
+    bodylotion = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="bodylotion")
 
