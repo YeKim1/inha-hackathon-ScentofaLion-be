@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class SubselectConfig(AppConfig):
+class SubConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'subSelect'
+    name = 'sub'

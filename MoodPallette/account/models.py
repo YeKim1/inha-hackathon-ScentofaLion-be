@@ -1,7 +1,8 @@
 from email.policy import default
+from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
-from subSelect.models import subSelect
+from sub.models import subSet
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -33,7 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     price = models.IntegerField(null=True)
     sub_date = models.DateField(null=True)
     nickname = models.CharField(max_length=100)
-    subSelect_id = models.ForeignKey(subSelect, on_delete=models.PROTECT, db_column="subSelect_id", null=True)
+    subSet = models.ForeignKey(subSet, on_delete=models.CASCADE,null=True)
     user_color = models.CharField(max_length=6, default="")
 
     is_active = models.BooleanField(default=True)
