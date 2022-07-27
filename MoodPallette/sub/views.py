@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from pyparsing import str_type
 from .models import subSet
-from .serializers import subSetSerializer, NameSerializer, TFSerializer
+from .serializers import subSetSerializer, NameSerializer
 from account.models import User
 from product.models import product
 from rest_framework.views import APIView
@@ -23,8 +23,8 @@ class subSet_API(APIView):
             elif k == "handcream":
                 set.handcream = p
                 set.count += 1
-            elif k == "sofrner":
-                set.sofrner = p
+            elif k == "softner":
+                set.softner = p
                 set.count += 1
             elif k == "perfume":
                 set.perfume = p

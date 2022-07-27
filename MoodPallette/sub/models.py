@@ -8,7 +8,7 @@ class subSet(models.Model):
     diffuser = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="diffuser")
     handwash = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="handwash")
     handcream = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="handcream")
-    sofrner = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="sofrner")
+    softner = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="softner")
     perfume = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="perfume")
     shampoo = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="shampoo")
     rinse = models.ForeignKey(product, on_delete=models.CASCADE, null=True, related_name="rinse")
