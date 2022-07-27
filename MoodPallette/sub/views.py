@@ -13,47 +13,50 @@ class subSet_API(APIView):
         set = subSet()
         user = User.objects.get(id=userId)
         for k, v in request.data.items():
-            p = product.objects.get(pk=v)
-            if k == "diffuser":
-                set.diffuser = p
-                set.count += 1
-            elif k == "handwash":
-                set.handwash = p
-                set.count += 1
-            elif k == "handcream":
-                set.handcream = p
-                set.count += 1
-            elif k == "softner":
-                set.softner = p
-                set.count += 1
-            elif k == "perfume":
-                set.perfume = p
-                set.count += 1
-            elif k == "shampoo":
-                set.shampoo = p
-                set.count += 1
-            elif k == "rinse":
-                set.rinse = p
-                set.count += 1
-            elif k == "bodywash":
-                set.bodywash = p
-                set.count += 1
-            elif k == "candle":
-                set.candle = p
-                set.count += 1
-            elif k == "room":
-                set.room = p
-                set.count += 1
-            elif k == "bodymist":
-                set.bodymist = p
-                set.count += 1
-            elif k == "bodylotion":
-                set.bodylotion = p
-                set.count += 1
+            if k != "price" and k != "sub_date":
+                p = product.objects.get(pk=v)
+                if k == "diffuser":
+                    set.diffuser = p
+                    set.count += 1
+                elif k == "handwash":
+                    set.handwash = p
+                    set.count += 1
+                elif k == "handcream":
+                    set.handcream = p
+                    set.count += 1
+                elif k == "softner":
+                    set.softner = p
+                    set.count += 1
+                elif k == "perfume":
+                    set.perfume = p
+                    set.count += 1
+                elif k == "shampoo":
+                    set.shampoo = p
+                    set.count += 1
+                elif k == "rinse":
+                    set.rinse = p
+                    set.count += 1
+                elif k == "bodywash":
+                    set.bodywash = p
+                    set.count += 1
+                elif k == "candle":
+                    set.candle = p
+                    set.count += 1
+                elif k == "room":
+                    set.room = p
+                    set.count += 1
+                elif k == "bodymist":
+                    set.bodymist = p
+                    set.count += 1
+                elif k == "bodylotion":
+                    set.bodylotion = p
+                    set.count += 1
                 
         set.color = user.user_color
         set.save()
         user.subSet = set
+        user.price = request.data["price"]
+        user.sub_date = request.data["sub_date"]
         user.save()
         return Response(status=200)
 
