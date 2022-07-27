@@ -65,11 +65,18 @@ class subSet_API(APIView):
 
         return Response(serializer.data, status=200)
 
-class subSet_TF(APIView):
+class sub_product(APIView):
     def get(self, request, userId):
         user = User.objects.get(id=userId)
         user_set = user.subSet
         set = subSet.objects.get(id=user_set.id)
-        serializer = TFSerializer(set)
 
-        return Response(serializer.data, status=200)
+        serializer = NameSerializer(set)
+        
+        list = {}
+
+        for k,v in serializer.data.items():
+            if v:
+                list[k] = v
+
+        return Response(list, status=200)
