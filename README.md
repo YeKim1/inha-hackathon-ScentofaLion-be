@@ -1,4 +1,21 @@
-# inha-hackathon-ScentofaLion-be
+# 🎨 ScentofaLion 🦁
+
+ 해당 프로젝트는 멋쟁이 사자처럼 인하대학교 10기 해커톤 참가를 위한 프로젝트입니다.
+
+## 📢 소개
+
+> **서비스명** : Mood Palette  
+> **주제** : 테스트 기반으로 알아보는 향 선호도, 선호하는 향에 맞는 구독 서비스  
+> **팀명** : 🎨 ScentofaLion 🦁  
+> **Front-End** : 김소정, 신미리, 이동령  
+> **Back-End** : 김예은, 이혜윤  
+> **기획 & 디자인** : 홍석민  
+> **담당 운영진** : 송진서, 이준현, 홍여진  
+> **주소** : `추후 추가 예정`  
+
+## 🌳 Branch Strtegy
+
+우형?
 
 ## 🌏 Commit-Massage Convention
 
@@ -21,3 +38,8 @@ type: commit message
 
 ### 📌 commit message
 `commit message`는 최대한 간략한 영문으로 작성하며, 동사원형을 사용하는 것을 원칙으로 합니다.
+
+
+## 🔧 Front-End Project Stack
+![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white) 	![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)! [GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
