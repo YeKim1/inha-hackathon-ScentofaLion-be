@@ -7,6 +7,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 
+def test(request):
+    return render(request, "test.html")
+    
 class login(APIView):
     def post(self, request, *args, **kwargs):
         userEmail = request.data["email"]
