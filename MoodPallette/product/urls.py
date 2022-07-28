@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.urls import path
 from product import views
 from django.views.decorators.csrf import csrf_exempt
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('red/', csrf_exempt(views.red.as_view())),
@@ -14,4 +15,6 @@ urlpatterns = [
     path('purple/', csrf_exempt(views.purple.as_view())),
     path('<int:userId>/', csrf_exempt(views.getuser.as_view())),
     path('getColor/', csrf_exempt(views.getColor.as_view())),
-]
+] 
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
