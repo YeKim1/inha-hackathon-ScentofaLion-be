@@ -5,8 +5,3 @@ class subSetSerializer(serializers.ModelSerializer):
     class Meta:
         model = subSet
         fields = '__all__'
-
-class NameSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = subSet
-        exclude = ['id', 'color']
